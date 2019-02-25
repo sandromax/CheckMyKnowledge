@@ -1,0 +1,1 @@
+JavaFX application allows self-testing
