@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="io.sandromax.checkmyknowledge.view.StartSceneController"
+            prefHeight="400.0" prefWidth="600.0">
+    <children>
+        <HBox>
+            <Label fx:id="lblPath">Путь к файлу с прошлого тестирования</Label>
+            <Button fx:id="btnChoose" onAction="#chooseAnother" text="Другой файл">
+                <tooltip>
+                    <Tooltip text="если нужно загрузить другой файл с тестами"/>
+                </tooltip>
+            </Button>
+        </HBox>
+        <Button fx:id="btnStart" onAction="#startTest" text="Начать тестирование"/>
+    </children>
+
+</VBox>
