@@ -30,7 +30,7 @@
             <Label fx:id="lblFourthVariant">Вариант 4</Label>
         </HBox>
 
-        <Button fx:id="btnEnd">Закончить</Button>
+        <Button fx:id="btnEnd" onAction="#endTest">Закончить</Button>
         <Button fx:id="btnNext">Следующий</Button>
     </children>
 
