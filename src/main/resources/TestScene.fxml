@@ -6,32 +6,42 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox xmlns="http://javafx.com/javafx"
+<BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="io.sandromax.checkmyknowledge.view.controller.TestSceneController"
-            prefHeight="400.0" prefWidth="600.0">
-    <children>
-        <Label fx:id="lblProgress">Правильно/Всего</Label>
-        <Label fx:id="lblQuestion">Вопрос</Label>
-        <HBox>
-            <CheckBox fx:id="cbFirstVariant"></CheckBox>
-            <Label fx:id="lblFirstVariant">Вариант 1</Label>
+            prefHeight="600.0" prefWidth="800.0">
+    <top>
+        <Label fx:id="lblProgress" alignment="BASELINE_RIGHT">Правильно/Всего</Label>
+    </top>
+    <center>
+        <VBox alignment="CENTER">
+            <Label fx:id="lblQuestion">Вопрос</Label>
+            <HBox>
+                <CheckBox fx:id="cbFirstVariant" indeterminate="false" onAction="#select"></CheckBox>
+                <Label fx:id="lblFirstVariant">Вариант 1</Label>
+            </HBox>
+            <HBox>
+                <CheckBox fx:id="cbSecondVariant" indeterminate="false" onAction="#select"></CheckBox>
+                <Label fx:id="lblSecondVariant">Вариант 2</Label>
+            </HBox>
+            <HBox>
+                <CheckBox fx:id="cbThirdVariant" indeterminate="false" onAction="#select"></CheckBox>
+                <Label fx:id="lblThirdVariant">Вариант 3</Label>
+            </HBox>
+            <HBox>
+                <CheckBox fx:id="cbFourthVariant" indeterminate="false" onAction="#select"></CheckBox>
+                <Label fx:id="lblFourthVariant">Вариант 4</Label>
+            </HBox>
+            <Button fx:id="btnBegin" onAction="#beginTest">Начать</Button>
+            <Label fx:id="lblMessage"/>
+        </VBox>
+    </center>
+    <bottom>
+        <HBox >
+            <Button fx:id="btnEnd" onAction="#endTest">Закончить</Button>
+            <Button fx:id="btnNext" onAction="#nextQuestion">Следующий</Button>
         </HBox>
-        <HBox>
-            <CheckBox fx:id="cbSecondVariant"></CheckBox>
-            <Label fx:id="lblSecondVariant">Вариант 2</Label>
-        </HBox>
-        <HBox>
-            <CheckBox fx:id="cbThirdVariant"></CheckBox>
-            <Label fx:id="lblThirdVariant">Вариант 3</Label>
-        </HBox>
-        <HBox>
-            <CheckBox fx:id="cbFourthVariant"></CheckBox>
-            <Label fx:id="lblFourthVariant">Вариант 4</Label>
-        </HBox>
+    </bottom>
 
-        <Button fx:id="btnEnd" onAction="#endTest">Закончить</Button>
-        <Button fx:id="btnNext">Следующий</Button>
-    </children>
 
-</VBox>
+</BorderPane>
