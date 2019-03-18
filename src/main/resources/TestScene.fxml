@@ -18,19 +18,19 @@
             <Label fx:id="lblQuestion">Вопрос</Label>
             <HBox>
                 <CheckBox fx:id="cbFirstVariant" indeterminate="false" onAction="#select"></CheckBox>
-                <Label fx:id="lblFirstVariant">Вариант 1</Label>
+                <Label fx:id="lblFirstVariant" onMouseClicked="#selectLabel">Вариант 1</Label>
             </HBox>
             <HBox>
                 <CheckBox fx:id="cbSecondVariant" indeterminate="false" onAction="#select"></CheckBox>
-                <Label fx:id="lblSecondVariant">Вариант 2</Label>
+                <Label fx:id="lblSecondVariant" onMouseClicked="#selectLabel">Вариант 2</Label>
             </HBox>
             <HBox>
                 <CheckBox fx:id="cbThirdVariant" indeterminate="false" onAction="#select"></CheckBox>
-                <Label fx:id="lblThirdVariant">Вариант 3</Label>
+                <Label fx:id="lblThirdVariant" onMouseClicked="#selectLabel">Вариант 3</Label>
             </HBox>
             <HBox>
                 <CheckBox fx:id="cbFourthVariant" indeterminate="false" onAction="#select"></CheckBox>
-                <Label fx:id="lblFourthVariant">Вариант 4</Label>
+                <Label fx:id="lblFourthVariant" onMouseClicked="#selectLabel">Вариант 4</Label>
             </HBox>
             <Button fx:id="btnBegin" onAction="#beginTest">Начать</Button>
             <Label fx:id="lblMessage"/>
