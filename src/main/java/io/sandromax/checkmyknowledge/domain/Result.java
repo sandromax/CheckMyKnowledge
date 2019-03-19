@@ -1,28 +1,40 @@
 package io.sandromax.checkmyknowledge.domain;
 
+import javafx.beans.property.SimpleStringProperty;
+
 public class Result {
-    private Issue issue;
-    private String answer;
-    private Boolean isRight;
+    private SimpleStringProperty question;
+    private SimpleStringProperty yourAnswer;
+    private SimpleStringProperty rightAnswer;
 
-    public Result(Issue issue, String answer) {
-        this.issue = issue;
-        this.answer = answer;
-
-        if(answer.equals(issue.getRightAnswer())) {
-            isRight = true;
-        }
+    public Result(String question, String yourAnswer, String rightAnswer) {
+        this.question = new SimpleStringProperty(question);
+        this.yourAnswer = new SimpleStringProperty(yourAnswer);
+        this.rightAnswer = new SimpleStringProperty(rightAnswer);
     }
 
-    public Issue getIssue() {
-        return issue;
+    public String getQuestion() {
+        return question.get();
     }
 
-    public String getAnswer() {
-        return answer;
+    public void setQuestion(String question) {
+        this.question.set(question);
+//        this.question = new SimpleStringProperty(question);
     }
 
-    public Boolean getRight() {
-        return isRight;
+    public String getYourAnswer() {
+        return yourAnswer.get();
+    }
+
+    public void setYourAnswer(String yourAnswer) {
+        this.yourAnswer.set(yourAnswer);
+    }
+
+    public String getRightAnswer() {
+        return rightAnswer.get();
+    }
+
+    public void setRightAnswer(String rightAnswer) {
+        this.rightAnswer.set(rightAnswer);
     }
 }
