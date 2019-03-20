@@ -5,15 +5,18 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.sandromax.checkmyknowledge.view.controller.ResultSceneController">
+<?import javafx.scene.control.Button?>
+<VBox prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.sandromax.checkmyknowledge.view.controller.ResultSceneController">
     <children>
         <Label fx:id="lblResults">Результаты</Label>
         <TableView fx:id="tvResults">
          <columns>
-            <TableColumn fx:id="colQuestion" prefWidth="75.0" sortable="false" text="Вопрос" />
-            <TableColumn fx:id="colYourAnswer" prefWidth="75.0" sortable="false" text="Ваш ответ" />
-            <TableColumn fx:id="colRightAnswer" prefWidth="75.0" sortable="false" text="Правильный ответ" />
+            <TableColumn fx:id="question" prefWidth="500.0" sortable="false" text="Вопрос" />
+            <TableColumn fx:id="yourAnswer" prefWidth="150.0" sortable="false" text="Ваш ответ" />
+            <TableColumn fx:id="rightAnswer" prefWidth="150.0" sortable="false" text="Правильный ответ" />
          </columns></TableView>
+        <Button text="Тестировать снова" fx:id="btnTestAgain" onAction="#testAgain"/>
+        <Button text="Выход" fx:id="btnExit" onAction="#exit"/>
     </children>
 
 </VBox>

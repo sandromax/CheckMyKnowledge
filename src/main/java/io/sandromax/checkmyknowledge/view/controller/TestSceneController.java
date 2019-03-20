@@ -1,12 +1,14 @@
 package io.sandromax.checkmyknowledge.view.controller;
 
 import io.sandromax.checkmyknowledge.domain.Issue;
+import io.sandromax.checkmyknowledge.exceptions.NoNewIssuesInBase;
 import io.sandromax.checkmyknowledge.services.TestConductor;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -22,7 +24,6 @@ import java.util.stream.Collectors;
 
 public class TestSceneController {
     private TestConductor testConductor;
-    private Scene startScene, resultScene;
     private Issue currentIssue;
 
     @FXML
@@ -36,14 +37,6 @@ public class TestSceneController {
 
     public void setTestConductor(TestConductor conductor) {
         testConductor = conductor;
-    }
-
-    public void setStartScene(Scene startScene) {
-        this.startScene = startScene;
-    }
-
-    public void setResultScene(Scene resultScene) {
-        this.resultScene = resultScene;
     }
 
     @FXML
@@ -67,7 +60,12 @@ public class TestSceneController {
     public void beginTest(ActionEvent event) {
         lblProgress.setText(testConductor.getRightIssues() + "/" + testConductor.getTotalIssues());
 
-        currentIssue = testConductor.getNewIssue();
+        try {
+            currentIssue = testConductor.getNewIssue();
+        } catch (NoNewIssuesInBase noNewIssuesInBase) {
+            noNewIssuesInBase.printStackTrace();
+            endTest();
+        }
 
         lblQuestion.setText(currentIssue.getQuestion());
 
@@ -114,25 +112,54 @@ public class TestSceneController {
             testConductor.answerIsWrong();
         }
 
-        testConductor.saveIssueDone(currentIssue, answer);
+        testConductor.saveIssueDone(currentIssue.getQuestion(), answer, currentIssue.getRightAnswer());
 
-        currentIssue = testConductor.getNewIssue();
+        try {
+            currentIssue = testConductor.getNewIssue();
+        } catch (NoNewIssuesInBase noNewIssuesInBase) {
+//            noNewIssuesInBase.printStackTrace();
+            endTest();
+        }
 
         refreshView();
+    }
+
+    private void endTest() {
+        try {
+            FXMLLoader resultPageLoader = new FXMLLoader(getClass().getResource("/ResultScene.fxml"));
+            Parent resultScenePane = resultPageLoader.load();
+            Scene testScene = new Scene(resultScenePane, 800, 600);
+
+            ResultSceneController testSceneController = (ResultSceneController) resultPageLoader.getController();
+            testSceneController.setTestConductor(testConductor);
+
+            Stage stage = (Stage) btnNext.getScene().getWindow();
+            testSceneController.setTestConductor(testConductor);
+
+            stage.setScene(testScene);
+        }catch (IOException io){
+            io.printStackTrace();
+            lblMessage.setText("Ошибка загрузки следующего вида");
+        }
     }
 
     @FXML
     private void endTest(ActionEvent event) {
         try {
-            System.out.println("results: " + testConductor.getTestResults().getResults().size());
+            FXMLLoader resultPageLoader = new FXMLLoader(getClass().getResource("/ResultScene.fxml"));
+            Parent resultScenePane = resultPageLoader.load();
+            Scene testScene = new Scene(resultScenePane, 800, 600);
 
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ResultScene.fxml"));
-            Stage stage = (Stage) btnEnd.getScene().getWindow();
-            Scene scene = new Scene(loader.load());
-//            stage.setTitle("Результаты");
-            stage.setScene(scene);
+            ResultSceneController testSceneController = (ResultSceneController) resultPageLoader.getController();
+            testSceneController.setTestConductor(testConductor);
+
+            Stage stage = (Stage) btnNext.getScene().getWindow();
+            testSceneController.setTestConductor(testConductor);
+
+            stage.setScene(testScene);
         }catch (IOException io){
             io.printStackTrace();
+            lblMessage.setText("Ошибка загрузки следующего вида");
         }
     }
 

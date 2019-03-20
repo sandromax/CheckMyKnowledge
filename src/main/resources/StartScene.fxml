@@ -8,7 +8,7 @@
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="io.sandromax.checkmyknowledge.view.controller.StartSceneController"
-      prefHeight="400.0" prefWidth="600.0">
+      prefHeight="600.0" prefWidth="800.0">
     <children>
         <HBox>
             <Label fx:id="lblPath">Путь к файлу с прошлого тестирования</Label>
@@ -18,7 +18,8 @@
                 </tooltip>
             </Button>
         </HBox>
-        <Button fx:id="btnStart" onAction="#startTest" text="Начать тестирование"/>
+        <Button fx:id="btnStart" onAction="#goToTests" text="Перейти к тестам"/>
+        <Label fx:id="lblErrors"/>
     </children>
 
 </VBox>
