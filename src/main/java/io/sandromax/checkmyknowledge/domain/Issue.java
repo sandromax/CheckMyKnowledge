@@ -1,13 +1,14 @@
 package io.sandromax.checkmyknowledge.domain;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 
 public class Issue {
     private String question;
     private String rightAnswer;
-    private HashSet<String> variantAnswers;
+    private ArrayList<String> variantAnswers;
 
-    public Issue(String question, String rightAnswer, HashSet<String> variantAnswers) {
+    public Issue(String question, String rightAnswer, ArrayList<String> variantAnswers) {
         this.question = question;
         this.rightAnswer = rightAnswer;
         this.variantAnswers = variantAnswers;
@@ -21,7 +22,7 @@ public class Issue {
         return rightAnswer;
     }
 
-    public HashSet<String> getVariantAnswers() {
+    public ArrayList<String> getVariantAnswers() {
         return variantAnswers;
     }
 }

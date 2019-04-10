@@ -7,13 +7,13 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class SimpleTestLoader implements TestLoader {
-    public HashSet<Issue> load(String filePath) throws IOException {
+    public LinkedList<Issue> load(String filePath) throws IOException {
         return parse(readFile(filePath));
     }
 
@@ -27,47 +27,47 @@ public class SimpleTestLoader implements TestLoader {
         return rows;
     }
 
-    private static HashSet parse(LinkedList<String> rows) {
+    private static LinkedList parse(LinkedList<String> rows) {
         int rowCounter = 0;
-        HashSet<Issue> issues = new HashSet<>();
+        LinkedList<Issue> issues = new LinkedList<>();
 
         String question= "";
         String rightAnswer= "";
-        HashSet<String> answers= new HashSet<>();
+        ArrayList<String> answers= new ArrayList<>();
 
         for(String str : rows) {
-            Matcher m = Pattern.compile("^(\\*){1}.{1,}").matcher(str);
+            Matcher matcher = Pattern.compile("^(\\*){1}.{1,}").matcher(str);
             if(!str.equals("")) {
                 if(rowCounter == 0) {
                     question = str;
-                    rowCounter++;
+                    rowCounter = 1;
                 }
                 else if(rowCounter == 1) {
-                    if(m.matches()) {
+                    if(matcher.matches()) {
                         str = str.substring(1);
                         rightAnswer = str;
                     }
                     answers.add(str);
-                    rowCounter++;
+                    rowCounter = 2;
                 }
                 else if(rowCounter == 2) {
-                    if(m.matches()) {
+                    if(matcher.matches()) {
                         str = str.substring(1);
                         rightAnswer = str;
                     }
                     answers.add(str);
-                    rowCounter++;
+                    rowCounter = 3;
                 }
                 else if(rowCounter == 3) {
-                    if(m.matches()) {
+                    if(matcher.matches()) {
                         str = str.substring(1);
                         rightAnswer = str;
                     }
                     answers.add(str);
-                    rowCounter++;
+                    rowCounter = 4;
                 }
                 else if(rowCounter == 4) {
-                    if(m.matches()) {
+                    if(matcher.matches()) {
                         str = str.substring(1);
                         rightAnswer = str;
                     }
@@ -77,7 +77,7 @@ public class SimpleTestLoader implements TestLoader {
 
                     question = "";
                     rightAnswer = "";
-                    answers = new HashSet<>();
+                    answers = new ArrayList<>();
                     rowCounter = 0;
                 }
             }

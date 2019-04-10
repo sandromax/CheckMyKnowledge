@@ -8,9 +8,9 @@
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="io.sandromax.checkmyknowledge.view.controller.StartSceneController"
-      prefHeight="600.0" prefWidth="800.0">
+      prefHeight="600.0" prefWidth="800.0" styleClass="vbox" stylesheets="startScene.css">
     <children>
-        <HBox>
+        <HBox >
             <Label fx:id="lblPath">Путь к файлу с прошлого тестирования</Label>
             <Button fx:id="btnChoose" onAction="#chooseAnother" text="Другой файл">
                 <tooltip>

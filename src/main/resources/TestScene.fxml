@@ -1,45 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="io.sandromax.checkmyknowledge.view.controller.TestSceneController"
-            prefHeight="600.0" prefWidth="800.0">
+<BorderPane prefHeight="600.0" prefWidth="800.0"
+            stylesheets="testScene.css"
+            xmlns="http://javafx.com/javafx/8.0.172-ea"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="io.sandromax.checkmyknowledge.view.controller.TestSceneController">
     <top>
-        <Label fx:id="lblProgress" alignment="BASELINE_RIGHT">Правильно/Всего</Label>
+        <HBox alignment="TOP_RIGHT" spacing="2.0">
+            <Label fx:id="lblProgressRight" textFill="#ff5e17" />
+            <Label fx:id="lblProgressSlash">/</Label>
+            <Label fx:id="lblProgressTotal" />
+         <padding>
+            <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+         </padding>
+        </HBox>
     </top>
     <center>
-        <VBox alignment="CENTER">
-            <Label fx:id="lblQuestion">Вопрос</Label>
+        <VBox alignment="CENTER" spacing="10.0" styleClass="question">
+            <Label fx:id="lblQuestion" wrapText="true">
+            <VBox.margin>
+               <Insets bottom="30.0" />
+            </VBox.margin>
+            <font>
+               <Font size="18.0" />
+            </font></Label>
             <HBox>
-                <CheckBox fx:id="cbFirstVariant" indeterminate="false" onAction="#select"></CheckBox>
-                <Label fx:id="lblFirstVariant" onMouseClicked="#selectLabel">Вариант 1</Label>
+                <CheckBox fx:id="cbFirstVariant" indeterminate="false" onAction="#select" />
+                <Label fx:id="lblFirstVariant" onMouseClicked="#selectLabel" wrapText="true">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
             </HBox>
             <HBox>
-                <CheckBox fx:id="cbSecondVariant" indeterminate="false" onAction="#select"></CheckBox>
-                <Label fx:id="lblSecondVariant" onMouseClicked="#selectLabel">Вариант 2</Label>
+                <CheckBox fx:id="cbSecondVariant" indeterminate="false" onAction="#select" />
+                <Label fx:id="lblSecondVariant" onMouseClicked="#selectLabel" wrapText="true">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
             </HBox>
             <HBox>
-                <CheckBox fx:id="cbThirdVariant" indeterminate="false" onAction="#select"></CheckBox>
-                <Label fx:id="lblThirdVariant" onMouseClicked="#selectLabel">Вариант 3</Label>
+                <CheckBox fx:id="cbThirdVariant" indeterminate="false" onAction="#select" />
+                <Label fx:id="lblThirdVariant" onMouseClicked="#selectLabel" wrapText="true">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
             </HBox>
             <HBox>
-                <CheckBox fx:id="cbFourthVariant" indeterminate="false" onAction="#select"></CheckBox>
+                <CheckBox fx:id="cbFourthVariant" indeterminate="false" onAction="#select" />
                 <Label fx:id="lblFourthVariant" onMouseClicked="#selectLabel">Вариант 4</Label>
             </HBox>
             <Button fx:id="btnBegin" onAction="#beginTest">Начать</Button>
-            <Label fx:id="lblMessage"/>
+            <Label fx:id="lblMessage" wrapText="true">
+            <font>
+               <Font size="14.0" />
+            </font></Label>
+         <padding>
+            <Insets left="30.0" right="30.0" />
+         </padding>
         </VBox>
     </center>
     <bottom>
-        <HBox >
+        <HBox alignment="CENTER" spacing="100.0" BorderPane.alignment="CENTER">
             <Button fx:id="btnEnd" onAction="#endTest">Закончить</Button>
             <Button fx:id="btnNext" onAction="#nextQuestion">Следующий</Button>
+         <padding>
+            <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+         </padding>
         </HBox>
     </bottom>
 </BorderPane>

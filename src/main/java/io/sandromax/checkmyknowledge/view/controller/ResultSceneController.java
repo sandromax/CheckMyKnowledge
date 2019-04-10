@@ -9,11 +9,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -41,6 +39,110 @@ public class ResultSceneController {
         question.setCellValueFactory(new PropertyValueFactory<>("question"));
         yourAnswer.setCellValueFactory(new PropertyValueFactory<>("yourAnswer"));
         rightAnswer.setCellValueFactory(new PropertyValueFactory<>("rightAnswer"));
+
+        lblResults.setText("Результаты: правильно " + testConductor.getRightIssues() + " из " + testConductor.getTotalIssues());
+
+        question.setCellFactory(column -> {
+            return new TableCell<Result, String>() {
+                @Override
+                protected void updateItem(String item, boolean empty) {
+                    super.updateItem(item, empty); //This is mandatory
+
+                    if (item == null || empty) { //If the cell is empty
+                        setText(null);
+                        setStyle("");
+                    } else { //If the cell is not empty
+
+                        setText(item); //Put the String data in the cell
+
+                        //We get here all the info of the Person of this row
+                        Result auxResult = getTableView().getItems().get(getIndex());
+
+                        // Style all persons wich name is "Edgard"
+                        if (auxResult.getRightAnswer().equals(auxResult.getYourAnswer())) {
+                            setTextFill(Color.rgb(7, 173, 50)); //The text in red
+//                            setStyle("-fx-background-color: #f5f5f5"); //The background of the cell in yellow
+//                            setTextFill(Color.color(7, 173, 50)); //The text in red
+//                            setStyle("-fx-background-color: #f5f5f5");
+                        } else {
+                            //Here I see if the row of this cell is selected or not
+                            if(getTableView().getSelectionModel().getSelectedItems().contains(auxResult))
+                                setTextFill(Color.WHITE);
+                            else
+                                setTextFill(Color.rgb(253, 71, 63));
+                        }
+                    }
+                }
+            };
+        });
+
+        yourAnswer.setCellFactory(column -> {
+            return new TableCell<Result, String>() {
+                @Override
+                protected void updateItem(String item, boolean empty) {
+                    super.updateItem(item, empty); //This is mandatory
+
+                    if (item == null || empty) { //If the cell is empty
+                        setText(null);
+                        setStyle("");
+                    } else { //If the cell is not empty
+
+                        setText(item); //Put the String data in the cell
+
+                        //We get here all the info of the Person of this row
+                        Result auxResult = getTableView().getItems().get(getIndex());
+
+                        // Style all persons wich name is "Edgard"
+                        if (auxResult.getRightAnswer().equals(auxResult.getYourAnswer())) {
+                            setTextFill(Color.rgb(7, 173, 50)); //The text in red
+//                            setStyle("-fx-background-color: #f5f5f5"); //The background of the cell in yellow
+//                            setTextFill(Color.color(7, 173, 50)); //The text in red
+//                            setStyle("-fx-background-color: #f5f5f5");
+                        } else {
+                            //Here I see if the row of this cell is selected or not
+                            if(getTableView().getSelectionModel().getSelectedItems().contains(auxResult))
+                                setTextFill(Color.WHITE);
+                            else
+                                setTextFill(Color.rgb(253, 71, 63));
+                        }
+                    }
+                }
+            };
+        });
+
+        rightAnswer.setCellFactory(column -> {
+            return new TableCell<Result, String>() {
+                @Override
+                protected void updateItem(String item, boolean empty) {
+                    super.updateItem(item, empty); //This is mandatory
+
+                    if (item == null || empty) { //If the cell is empty
+                        setText(null);
+                        setStyle("");
+                    } else { //If the cell is not empty
+
+                        setText(item); //Put the String data in the cell
+
+                        //We get here all the info of the Person of this row
+                        Result auxResult = getTableView().getItems().get(getIndex());
+
+                        // Style all persons wich name is "Edgard"
+                        if (auxResult.getRightAnswer().equals(auxResult.getYourAnswer())) {
+                            setTextFill(Color.rgb(7, 173, 50)); //The text in red
+//                            setStyle("-fx-background-color: #f5f5f5"); //The background of the cell in yellow
+//                            setTextFill(Color.color(7, 173, 50)); //The text in red
+//                            setStyle("-fx-background-color: #f5f5f5");
+                        } else {
+                            //Here I see if the row of this cell is selected or not
+                            if(getTableView().getSelectionModel().getSelectedItems().contains(auxResult))
+                                setTextFill(Color.WHITE);
+                            else
+                                setTextFill(Color.rgb(253, 71, 63));
+                        }
+                    }
+                }
+            };
+        });
 
         tvResults.setItems(results);
 

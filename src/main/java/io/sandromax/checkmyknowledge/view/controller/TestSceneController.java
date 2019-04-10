@@ -3,7 +3,6 @@ package io.sandromax.checkmyknowledge.view.controller;
 import io.sandromax.checkmyknowledge.domain.Issue;
 import io.sandromax.checkmyknowledge.exceptions.NoNewIssuesInBase;
 import io.sandromax.checkmyknowledge.services.TestConductor;
-import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,7 +16,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -27,7 +25,7 @@ public class TestSceneController {
     private Issue currentIssue;
 
     @FXML
-    Label lblProgress, lblQuestion, lblFirstVariant, lblSecondVariant, lblThirdVariant, lblFourthVariant, lblMessage;
+    Label lblProgressRight, lblProgressSlash, lblProgressTotal, lblQuestion, lblFirstVariant, lblSecondVariant, lblThirdVariant, lblFourthVariant, lblMessage;
 
     @FXML
     CheckBox cbFirstVariant, cbSecondVariant, cbThirdVariant, cbFourthVariant;
@@ -41,7 +39,9 @@ public class TestSceneController {
 
     @FXML
     public void initialize() {
-        lblProgress.setVisible(false);
+        lblProgressRight.setVisible(false);
+        lblProgressSlash.setVisible(false);
+        lblProgressTotal.setVisible(false);
         lblQuestion.setVisible(false);
         lblFirstVariant.setVisible(false);
         lblSecondVariant.setVisible(false);
@@ -58,7 +58,8 @@ public class TestSceneController {
 
     @FXML
     public void beginTest(ActionEvent event) {
-        lblProgress.setText(testConductor.getRightIssues() + "/" + testConductor.getTotalIssues());
+        lblProgressRight.setText(testConductor.getRightIssues() + "");
+        lblProgressTotal.setText(testConductor.getTotalIssues() + "");
 
         try {
             currentIssue = testConductor.getNewIssue();
@@ -76,7 +77,9 @@ public class TestSceneController {
         lblThirdVariant.setText(variants.get(2));
         lblFourthVariant.setText(variants.get(3));
 
-        lblProgress.setVisible(true);
+        lblProgressRight.setVisible(true);
+        lblProgressSlash.setVisible(true);
+        lblProgressTotal.setVisible(true);
         lblQuestion.setVisible(true);
         lblFirstVariant.setVisible(true);
         lblSecondVariant.setVisible(true);
@@ -128,7 +131,7 @@ public class TestSceneController {
         try {
             FXMLLoader resultPageLoader = new FXMLLoader(getClass().getResource("/ResultScene.fxml"));
             Parent resultScenePane = resultPageLoader.load();
-            Scene testScene = new Scene(resultScenePane, 800, 600);
+            Scene testScene = new Scene(resultScenePane, 1200, 800);
 
             ResultSceneController testSceneController = (ResultSceneController) resultPageLoader.getController();
             testSceneController.setTestConductor(testConductor);
@@ -188,7 +191,13 @@ public class TestSceneController {
     }
 
     private void refreshView() {
-        lblProgress.setText(testConductor.getRightIssues() + "/" + testConductor.getTotalIssues());
+        cbFirstVariant.setSelected(false);
+        cbSecondVariant.setSelected(false);
+        cbThirdVariant.setSelected(false);
+        cbFourthVariant.setSelected(false);
+
+        lblProgressRight.setText(testConductor.getRightIssues() + "");
+        lblProgressTotal.setText(testConductor.getTotalIssues() + "");
 
         lblQuestion.setText(currentIssue.getQuestion());
 
@@ -198,6 +207,8 @@ public class TestSceneController {
         lblSecondVariant.setText(variants.get(1));
         lblThirdVariant.setText(variants.get(2));
         lblFourthVariant.setText(variants.get(3));
+
+        lblMessage.setText("");
     }
 
     @FXML

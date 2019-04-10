@@ -24,7 +24,8 @@ public class StartSceneController {
 
     @FXML
     public void initialize() {
-        lblPath.setText("/Users/sandro/Documents/projects/_PORTFOLIO/KarinaTest/CheckMyKnowledge/src/main/resources/acouch_ua.txt");
+//        lblPath.setText("/Users/sandro/Documents/projects/_PORTFOLIO/KarinaTest/CheckMyKnowledge/src/main/resources/acouch_ua.txt");
+        lblPath.setText("/Users/sandro/Documents/projects/_PORTFOLIO/KarinaTest/CheckMyKnowledge/src/main/resources/acouch.txt");
     }
 
     @FXML
