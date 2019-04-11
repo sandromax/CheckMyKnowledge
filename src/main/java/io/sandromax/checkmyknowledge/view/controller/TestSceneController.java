@@ -39,6 +39,15 @@ public class TestSceneController {
 
     @FXML
     public void initialize() {
+        String lblPath = "/Users/sandro/Documents/projects/_PORTFOLIO/KarinaTest/CheckMyKnowledge/src/main/resources/acouch.txt";
+
+        try {
+            testConductor = new TestConductor(lblPath);
+        } catch (IOException e) {
+            e.printStackTrace();
+            lblMessage.setText("Ошибка загрузки файла с тестами");
+        }
+
         lblProgressRight.setVisible(false);
         lblProgressSlash.setVisible(false);
         lblProgressTotal.setVisible(false);

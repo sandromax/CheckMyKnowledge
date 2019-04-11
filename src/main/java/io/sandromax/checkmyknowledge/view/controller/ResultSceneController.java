@@ -151,7 +151,7 @@ public class ResultSceneController {
     @FXML
     private void testAgain(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/StartScene.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/TestScene.fxml"));
             Stage stage = (Stage) btnTestAgain.getScene().getWindow();
             Scene scene = new Scene(loader.load());
             stage.setScene(scene);

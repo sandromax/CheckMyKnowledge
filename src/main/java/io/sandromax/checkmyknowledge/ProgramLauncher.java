@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 public class ProgramLauncher extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent start = FXMLLoader.load(getClass().getResource("/StartScene.fxml"));
+        Parent start = FXMLLoader.load(getClass().getResource("/TestScene.fxml"));
 //        Parent testScene = FXMLLoader.load(getClass().getResource("/TestScene.fxml"));
 //        Parent resultScene = FXMLLoader.load(getClass().getResource("/ResultScene.fxml"));
 
