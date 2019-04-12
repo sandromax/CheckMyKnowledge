@@ -15,6 +15,7 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
@@ -39,10 +40,12 @@ public class TestSceneController {
 
     @FXML
     public void initialize() {
-        String lblPath = "/Users/sandro/Documents/projects/_PORTFOLIO/KarinaTest/CheckMyKnowledge/src/main/resources/acouch.txt";
+        String fileName = "acouch.txt";
+        ClassLoader classLoader = new TestSceneController().getClass().getClassLoader();
+        File file = new File(classLoader.getResource(fileName).getFile());
 
         try {
-            testConductor = new TestConductor(lblPath);
+            testConductor = new TestConductor(file.getPath());
         } catch (IOException e) {
             e.printStackTrace();
             lblMessage.setText("Ошибка загрузки файла с тестами");
