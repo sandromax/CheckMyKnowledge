@@ -9,6 +9,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -28,7 +29,7 @@ public class SimpleTestLoader implements TestLoader {
     }
 
     private static LinkedList parse(LinkedList<String> rows) {
-        int rowCounter = 0;
+        AtomicInteger rowCounter = new AtomicInteger();
         LinkedList<Issue> issues = new LinkedList<>();
 
         String question= "";
@@ -38,35 +39,35 @@ public class SimpleTestLoader implements TestLoader {
         for(String str : rows) {
             Matcher matcher = Pattern.compile("^(\\*){1}.{1,}").matcher(str);
             if(!str.equals("")) {
-                if(rowCounter == 0) {
+                if(rowCounter.get() == 0) {
                     question = str;
-                    rowCounter = 1;
+                    rowCounter.set(1);
                 }
-                else if(rowCounter == 1) {
+                else if(rowCounter.get() == 1) {
                     if(matcher.matches()) {
                         str = str.substring(1);
                         rightAnswer = str;
                     }
                     answers.add(str);
-                    rowCounter = 2;
+                    rowCounter.set(2);
                 }
-                else if(rowCounter == 2) {
+                else if(rowCounter.get() == 2) {
                     if(matcher.matches()) {
                         str = str.substring(1);
                         rightAnswer = str;
                     }
                     answers.add(str);
-                    rowCounter = 3;
+                    rowCounter.set(3);
                 }
-                else if(rowCounter == 3) {
+                else if(rowCounter.get() == 3) {
                     if(matcher.matches()) {
                         str = str.substring(1);
                         rightAnswer = str;
                     }
                     answers.add(str);
-                    rowCounter = 4;
+                    rowCounter.set(4);
                 }
-                else if(rowCounter == 4) {
+                else if(rowCounter.get() == 4) {
                     if(matcher.matches()) {
                         str = str.substring(1);
                         rightAnswer = str;
@@ -78,11 +79,8 @@ public class SimpleTestLoader implements TestLoader {
                     question = "";
                     rightAnswer = "";
                     answers = new ArrayList<>();
-                    rowCounter = 0;
+                    rowCounter.set(0);
                 }
-            }
-            else if(str.equals("")) {
-                continue;
             }
         }
 

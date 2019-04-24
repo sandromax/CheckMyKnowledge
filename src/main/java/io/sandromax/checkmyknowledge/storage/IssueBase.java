@@ -4,7 +4,6 @@ import io.sandromax.checkmyknowledge.domain.Issue;
 import io.sandromax.checkmyknowledge.exceptions.NoNewIssuesInBase;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class IssueBase {
     private HashMap<String, Issue> issueBase = new HashMap<>();

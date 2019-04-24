@@ -12,6 +12,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
@@ -45,7 +47,7 @@ public class TestSceneController {
         File file = new File(classLoader.getResource(fileName).getFile());
 
         try {
-            testConductor = new TestConductor(file.getPath());
+            testConductor = new TestConductor(file.getCanonicalPath());
         } catch (IOException e) {
             e.printStackTrace();
             lblMessage.setText("Ошибка загрузки файла с тестами");
@@ -66,6 +68,8 @@ public class TestSceneController {
         cbFourthVariant.setVisible(false);
         btnEnd.setVisible(false);
         btnNext.setVisible(false);
+
+
     }
 
     @FXML
@@ -107,6 +111,12 @@ public class TestSceneController {
         btnEnd.setVisible(true);
         btnNext.setVisible(true);
         btnBegin.setVisible(false);
+
+        btnNext.addEventHandler(KeyEvent.KEY_PRESSED, ev -> {
+            if(ev.getCode() == KeyCode.ENTER) {
+                nextQuestion(event);
+            }
+        });
     }
 
     @FXML
@@ -132,7 +142,6 @@ public class TestSceneController {
         try {
             currentIssue = testConductor.getNewIssue();
         } catch (NoNewIssuesInBase noNewIssuesInBase) {
-//            noNewIssuesInBase.printStackTrace();
             endTest();
         }
 

@@ -9,7 +9,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.io.IOException;
-import java.util.stream.Collectors;
 
 public class TestConductor {
     private IssueBase issueBase;
@@ -46,11 +45,6 @@ public class TestConductor {
 
     private IssueBase loadIssues(String path) throws IOException {
         SimpleTestLoader loader = new SimpleTestLoader();
-
-//        for(Issue issue : loader.load(path).stream().sorted().collect(Collectors.toList())) {
-//            System.out.println(issue.getQuestion());
-//        }
-
         return new IssueBase(loader.load(path));
     }
 

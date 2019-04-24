@@ -25,16 +25,7 @@ public class Result {
     public String getYourAnswer() {
         return yourAnswer.get();
     }
-
-    public void setYourAnswer(String yourAnswer) {
-        this.yourAnswer.set(yourAnswer);
-    }
-
     public String getRightAnswer() {
         return rightAnswer.get();
-    }
-
-    public void setRightAnswer(String rightAnswer) {
-        this.rightAnswer.set(rightAnswer);
     }
 }

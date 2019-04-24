@@ -46,26 +46,19 @@ public class ResultSceneController {
             return new TableCell<Result, String>() {
                 @Override
                 protected void updateItem(String item, boolean empty) {
-                    super.updateItem(item, empty); //This is mandatory
+                    super.updateItem(item, empty);
 
-                    if (item == null || empty) { //If the cell is empty
+                    if (item == null || empty) {
                         setText(null);
                         setStyle("");
-                    } else { //If the cell is not empty
+                    } else {
+                        setText(item);
 
-                        setText(item); //Put the String data in the cell
-
-                        //We get here all the info of the Person of this row
                         Result auxResult = getTableView().getItems().get(getIndex());
 
-                        // Style all persons wich name is "Edgard"
                         if (auxResult.getRightAnswer().equals(auxResult.getYourAnswer())) {
-                            setTextFill(Color.rgb(7, 173, 50)); //The text in red
-//                            setStyle("-fx-background-color: #f5f5f5"); //The background of the cell in yellow
-//                            setTextFill(Color.color(7, 173, 50)); //The text in red
-//                            setStyle("-fx-background-color: #f5f5f5");
+                            setTextFill(Color.rgb(7, 173, 50));
                         } else {
-                            //Here I see if the row of this cell is selected or not
                             if(getTableView().getSelectionModel().getSelectedItems().contains(auxResult))
                                 setTextFill(Color.WHITE);
                             else
@@ -80,26 +73,18 @@ public class ResultSceneController {
             return new TableCell<Result, String>() {
                 @Override
                 protected void updateItem(String item, boolean empty) {
-                    super.updateItem(item, empty); //This is mandatory
+                    super.updateItem(item, empty);
 
-                    if (item == null || empty) { //If the cell is empty
+                    if (item == null || empty) {
                         setText(null);
                         setStyle("");
-                    } else { //If the cell is not empty
-
-                        setText(item); //Put the String data in the cell
-
-                        //We get here all the info of the Person of this row
+                    } else {
+                        setText(item);
                         Result auxResult = getTableView().getItems().get(getIndex());
 
-                        // Style all persons wich name is "Edgard"
                         if (auxResult.getRightAnswer().equals(auxResult.getYourAnswer())) {
-                            setTextFill(Color.rgb(7, 173, 50)); //The text in red
-//                            setStyle("-fx-background-color: #f5f5f5"); //The background of the cell in yellow
-//                            setTextFill(Color.color(7, 173, 50)); //The text in red
-//                            setStyle("-fx-background-color: #f5f5f5");
+                            setTextFill(Color.rgb(7, 173, 50));
                         } else {
-                            //Here I see if the row of this cell is selected or not
                             if(getTableView().getSelectionModel().getSelectedItems().contains(auxResult))
                                 setTextFill(Color.WHITE);
                             else

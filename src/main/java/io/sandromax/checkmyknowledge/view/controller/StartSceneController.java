@@ -4,7 +4,6 @@ import io.sandromax.checkmyknowledge.services.TestConductor;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -24,10 +23,7 @@ public class StartSceneController {
 
     @FXML
     public void initialize() {
-//        lblPath.setText("/Users/sandro/Documents/projects/_PORTFOLIO/KarinaTest/CheckMyKnowledge/src/main/resources/acouch_ua.txt");
         lblPath.setText("/Users/sandro/Documents/projects/_PORTFOLIO/KarinaTest/CheckMyKnowledge/src/main/resources/acouch.txt");
-
-
     }
 
     @FXML
